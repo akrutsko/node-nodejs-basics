@@ -5,4 +5,4 @@ import { createReadStream, createWriteStream } from 'node:fs';
 const readable = createReadStream(import.meta.dirname + '/files/fileToCompress.txt');
 const writable = createWriteStream(import.meta.dirname + '/files/archive.gz');
 
-pipeline(readable, createGzip(), writable).catch(console.error);
+await pipeline(readable, createGzip(), writable);

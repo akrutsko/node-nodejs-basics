@@ -5,9 +5,8 @@ const transformable = new Transform({
   transform(chunk, _, callback) {
     const input = chunk.toString().trim();
     const reverse = input.split('').reverse().join('');
-    this.push(reverse + EOL);
-    callback();
+    callback(null, reverse + EOL);
   },
 });
 
-process.stdin.pipe(transformable).on('error', console.error).pipe(process.stdout).on('error', console.error);
+process.stdin.pipe(transformable).pipe(process.stdout);
