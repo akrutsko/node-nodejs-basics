@@ -1,5 +1,5 @@
-const read = async () => {
-    // Write your code here 
-};
+import { createReadStream } from 'node:fs';
 
-await read();
+const readable = createReadStream(import.meta.dirname + '/files/fileToRead.txt', 'utf8');
+
+readable.pipe(process.stdout);

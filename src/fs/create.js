@@ -1,5 +1,7 @@
-const create = async () => {
-    // Write your code here 
-};
+import * as fs from 'node:fs/promises';
 
-await create();
+try {
+  await fs.writeFile(import.meta.dirname + '/files/fresh.txt', 'I am fresh and young', { flag: 'wx' });
+} catch {
+  throw new Error('FS operation failed');
+}
