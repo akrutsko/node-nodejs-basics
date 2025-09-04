@@ -1,5 +1,12 @@
-const transform = async () => {
-    // Write your code here 
-};
+import { Transform } from 'node:stream';
+import { EOL } from 'node:os';
 
-await transform();
+const transformable = new Transform({
+  transform(chunk, _, callback) {
+    const input = chunk.toString().trim();
+    const reverse = input.split('').reverse().join('');
+    callback(null, reverse + EOL);
+  },
+});
+
+process.stdin.pipe(transformable).pipe(process.stdout);

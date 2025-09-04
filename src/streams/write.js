@@ -1,5 +1,5 @@
-const write = async () => {
-    // Write your code here 
-};
+import { createWriteStream } from 'node:fs';
 
-await write();
+const writable = createWriteStream(import.meta.dirname + '/files/fileToWrite.txt');
+
+process.stdin.pipe(writable);
